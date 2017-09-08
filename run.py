@@ -12,7 +12,20 @@ team1 = league.teams[4]
 
 @app.route("/")
 def template_test():
-    return render_template('template.html', my_string=team1, my_list=league.teams)
+    return render_template('template.html', my_string=team1, my_list=league.teams, title="Home")
+
+@app.route("/home")
+def home():
+    return render_template('template.html', my_string=team1, my_list=league.teams, title="Home")
+
+@app.route("/about")
+def about():
+    return render_template('template.html', my_string=team1, my_list=league.teams, title="About")
+
+@app.route("/contact")
+def contact():
+    return render_template('template.html', my_string=team1, my_list=league.teams, title="Contact Us")
+
 
 
 if __name__ == '__main__':
