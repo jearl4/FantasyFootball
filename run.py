@@ -26,7 +26,9 @@ def about():
 def contact():
     return render_template('template.html', my_string=team1, my_list=league.teams, title="Contact Us")
 
-
+@app.route("/pRank")
+def pRank():
+    return render_template('template.html', my_string=team1, my_list=league.power_rankings(week=1), title="Power Rankings")
 
 if __name__ == '__main__':
     app.run(debug=True)
