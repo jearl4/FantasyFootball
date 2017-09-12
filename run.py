@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from espnff import League
+import datetime
 from flask import Flask, render_template
 app = Flask(__name__)
 
@@ -13,11 +14,17 @@ powerRankings= league.power_rankings(week=1)
 topTeamRank = str(powerRankings[0][1])
 topTeamRank = topTeamRank[5:-1]
 
-
+# Custom date time filter
+@app.template_filter()
+def datetimefilter(value, format='%Y/%m/%d %H:%M'):
+    """convert a datetime to a different format"""
+    return value.strftime(format)
+app.jinja_env.filters['datetimefilter'] = datetimefilter
 
 @app.route("/")
 def template_test():
-    return render_template('template.html', my_string=team1, my_list=league.teams, title=league.settings.name)
+    return render_template('template.html', my_string=team1, my_list=league.teams, title=league.settings.name,
+                           current_time=datetime.datetime.now())
 
 @app.route("/home")
 def home():
