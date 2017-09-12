@@ -4,19 +4,24 @@ from espnff import League
 from flask import Flask, render_template
 app = Flask(__name__)
 
+# Logic for web app. Look into breaking this into modules later.
 league_id = 646859
 year = 2017
 league = League(league_id,year)
-team1 = league.teams[4]
+team1 = league.teams[0]
+powerRankings= league.power_rankings(week=1)
+topTeamRank = str(powerRankings[0][1])
+topTeamRank = topTeamRank[5:-1]
+
 
 
 @app.route("/")
 def template_test():
-    return render_template('template.html', my_string=team1, my_list=league.teams, title="Home")
+    return render_template('template.html', my_string=team1, my_list=league.teams, title=league.settings.name)
 
 @app.route("/home")
 def home():
-    return render_template('template.html', my_string=team1, my_list=league.teams, title="Home")
+    return render_template('template.html', my_string=team1, my_list=league.teams, title=league.settings.name)
 
 @app.route("/about")
 def about():
@@ -28,7 +33,7 @@ def contact():
 
 @app.route("/pRank")
 def pRank():
-    return render_template('template.html', my_string=team1, my_list=league.power_rankings(week=1), title="Power Rankings")
+    return render_template('pRank.html', topTeam=topTeamRank, my_list=powerRankings, title="Power Rankings")
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block page %}{{title}}{% endblock %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+  <h2>Week 1</h2>
+  <h3>Top Team: {{topTeam}}</h3>
+  <h4>Rankings Week 1:</h4>
+  <ul>
+    {% for n in my_list %}
+    <li>{{n}}</li>
+    {% endfor %}
+  </ul>
+  <h3> This is the end of my child template</h3>
+  {% block footer %}
+  {{super()}}
+  {% endblock %}
+{% endblock %}
