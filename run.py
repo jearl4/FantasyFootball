@@ -11,7 +11,7 @@ year = 2017
 league = League(league_id,year)
 team1 = league.teams[0]
 powerRankings= league.power_rankings(week=1)
-topTeamRank = str(powerRankings[0][1])
+topTeamRank = str(powerRankings[0:][1])
 topTeamRank = topTeamRank[5:-1]
 
 # Custom date time filter

@@ -6,8 +6,10 @@
   <h3>Top Team: {{topTeam}}</h3>
   <h4>Rankings Week 1:</h4>
   <ul>
-    {% for n in my_list %}
-    <li>{{n}}</li>
+    {% for scoreRankPair in my_list %}
+        {% for score in scoreRankPair %}
+            <li>{{score}}</li>
+        {% endfor %}
     {% endfor %}
   </ul>
   <h3> This is the end of my child template</h3>
