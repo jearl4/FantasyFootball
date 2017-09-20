@@ -2,6 +2,7 @@
 
 from espnff import League
 import datetime
+import numpy as np
 from flask import Flask, render_template
 app = Flask(__name__)
 
@@ -10,9 +11,14 @@ league_id = 646859
 year = 2017
 league = League(league_id,year)
 team1 = league.teams[0]
-powerRankings= league.power_rankings(week=1)
+powerRankings= league.power_rankings(week=2)
 topTeamRank = str(powerRankings[0:][1])
 topTeamRank = topTeamRank[5:-1]
+
+points= []
+teams = []
+
+pRanks = np.asarray(powerRankings)
 
 # Custom date time filter
 @app.template_filter()
@@ -40,7 +46,7 @@ def contact():
 
 @app.route("/pRank")
 def pRank():
-    return render_template('pRank.html', topTeam=topTeamRank, my_list=powerRankings, title="Power Rankings")
+    return render_template('pRank.html', teamArray=teams, pointArray=pRanks, title="Power Rankings")
 
 if __name__ == '__main__':
     app.run(debug=True)

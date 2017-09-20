@@ -2,14 +2,12 @@
 {% block page %}{{title}}{% endblock %}
 {% block title %}{{title}}{% endblock %}
 {% block content %}
-  <h2>Week 1</h2>
-  <h3>Top Team: {{topTeam}}</h3>
-  <h4>Rankings Week 1:</h4>
-  <ul>
-    {% for scoreRankPair in my_list %}
-        {% for score in scoreRankPair %}
-            <li>{{score}}</li>
-        {% endfor %}
+  <h2>Week 2</h2>
+  <h3>Top Team: {{pointArray[0]}}</h3>
+  <h4>Rankings Week 2:</h4>
+  <ul>  
+    {% for n in pointArray %}
+        <p>{{n}}</p>
     {% endfor %}
   </ul>
   <h3> This is the end of my child template</h3>
