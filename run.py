@@ -18,7 +18,7 @@ topTeamRank = topTeamRank[5:-1]
 points= []
 teams = []
 
-pRanks = np.asarray(powerRankings)
+pRanks = np.asarray(powerRankings, str)
 
 # Custom date time filter
 @app.template_filter()
